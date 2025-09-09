@@ -37,7 +37,7 @@ import interiors_Img2 from '../Interior_Images/House.jpg'
 import interiors_Img3 from '../Interior_Images/Bed.jpg'
 import interiors_Img4 from '../Interior_Images/Kavundampalayam.jpg'
 import FreeEstimateButton from './Estimation';
-import Pooja from '../Interior_Images/pooja.jpg'
+import Pooja from '../Interior_Images/Pooja.jpg'
 import Saloon from '../Interior_Images/Saloon.jpg'
 import Blue from '../Interior_Images/Blue.jpg'
 import PoojaDoor from '../Interior_Images/PoojaDoor.jpg'
