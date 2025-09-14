@@ -14,11 +14,10 @@ import {
   useMediaQuery,
   alpha,
   Paper,
-  Link,
   Fab,
   Zoom,
-  
-} from '@mui/material';
+  BottomNavigation,
+  BottomNavigationAction,} from '@mui/material';
 import { 
   ArrowBack, 
   Phone,
@@ -29,7 +28,7 @@ import {
   LocationOn,
   DesignServices,
   CheckCircle,
-  East
+  East,
 } from '@mui/icons-material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import interiors_Img1 from '../Interior_Images/Living.jpg';
@@ -42,6 +41,16 @@ import Saloon from '../Interior_Images/Saloon.jpg'
 import Blue from '../Interior_Images/Blue.jpg'
 import PoojaDoor from '../Interior_Images/PoojaDoor.jpg'
 import stairs from '../Interior_Images/Stairs.jpg'
+import { Link } from "react-router-dom";
+
+// Add these imports at the top of your file
+import {
+  Home as HomeIcon,
+  Collections as GalleryIcon,
+  Info as AboutIcon,
+  ContactMail as ContactIcon,
+  RequestQuote as EstimateIcon
+} from "@mui/icons-material";
 
 // Create a custom theme for elegance
 const theme = createTheme({
@@ -238,50 +247,130 @@ const InteriorCarousel = () => {
     </Box>
   );
 };
-// Testing /
+
+
+
 const Navbar = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const [value, setValue] = useState(0);
+
   const menuItems = [
-    'HOME', 'SERVICES', 'ABOUT', 'CONTACT'
+    { label: "HOME", path: "/", icon: <HomeIcon /> },
+    { label: "GALLERY", path: "/gallery", icon: <GalleryIcon /> },
+    { label: "ABOUT", path: "/about", icon: <AboutIcon /> },
+    { label: "CONTACT", path: "/contact", icon: <ContactIcon /> },
   ];
 
   return (
-    <AppBar position="fixed" elevation={0} sx={{ backgroundColor: 'primary.main' }}>
-      <Toolbar sx={{ justifyContent: 'space-between', py: 1 }}>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
-          {/* <DesignServices sx={{ mr: 1 }} /> */}
-          <Typography variant="h6" component="div" fontWeight={600}>
-            Inx Glaze Solution
-          </Typography>
-        </Box>
-        
+    <>
+      <AppBar position="fixed" elevation={0} sx={{ backgroundColor: "primary.main", bottom: isMobile ? 'auto' : 'unset' }}>
+        <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
+          {/* Logo / Brand */}
+          <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Typography variant="h6" component="div" fontWeight={600}>
+              Inx
+            </Typography>
+          </Box>
+
+          {/* Menu items (hidden on mobile) */}
+          {!isMobile && (
+            <Box sx={{ display: "flex" }}>
+              {menuItems.map((item) => (
+                <Button
+                  key={item.label}
+                  component={Link}
+                  to={item.path}
+                  sx={{ mx: 0.5, color: "black", fontWeight: 600, textTransform: "none" }}
+                >
+                  {item.label}
+                </Button>
+              ))}
+            </Box>
+          )}
+
+          {/* Call-to-action button (hidden on mobile) */}
+          {!isMobile && <FreeEstimateButton />}
+        </Toolbar>
+
+        {/* Sub-bar (hidden on mobile) */}
         {!isMobile && (
-          <Box sx={{ display: 'flex' }}>
-            {menuItems.map((item) => (
-              <Button color="inherit" key={item} sx={{ mx: 0.5, color: 'Black', fontWeight: 600 }}>
-                {item}
-              </Button>
-            ))}
+          <Box
+            sx={{
+              backgroundColor: "primary.light",
+              color: "black",
+              py: 0.5,
+              textAlign: "center",
+            }}
+          >
+            <Typography variant="body2">
+              BENGALURU -{" "}
+              <span style={{ color: "black", fontWeight: 600 }}>COIMBATORE</span> - CHENNAI - KERALA
+            </Typography>
           </Box>
         )}
-        
-        <FreeEstimateButton />
-      </Toolbar>
-      
-      <Box sx={{ 
-        backgroundColor: 'primary.light', 
-        color: 'black', 
-        py: 0.5,
-        textAlign: 'center',
-      }}>
+      </AppBar>
 
-        <Typography variant="body2" >BENGALURU -{" "}
-          <span style={{ color: "black",  fontWeight: 600 }}>COIMBATORE</span> - CHENNAI - KERALA
-        </Typography>
-      </Box>
-    </AppBar>
+      {/* Mobile Bottom Navigation */}
+      {isMobile && (
+        <Paper 
+          sx={{ 
+            position: 'fixed', 
+            bottom: 0, 
+            left: 0, 
+            right: 0, 
+            zIndex: 1000,
+            borderTop: '1px solid #e0e0e0'
+          }} 
+          elevation={3}
+        >
+          <BottomNavigation
+            showLabels
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            sx={{
+              backgroundColor: "primary.main",
+              "& .MuiBottomNavigationAction-root": {
+                color: "black",
+                minWidth: 'auto',
+                padding: '6px 0',
+              },
+              "& .MuiBottomNavigationAction-root.Mui-selected": {
+                color: "black",
+                fontWeight: 600,
+              }
+            }}
+          >
+            {menuItems.map((item, index) => (
+              <BottomNavigationAction
+                key={item.label}
+                label={item.label}
+                icon={item.icon}
+                component={Link}
+                to={item.path}
+                sx={{ 
+                  fontWeight: value === index ? 600 : 400,
+                }}
+              />
+            ))}
+            <BottomNavigationAction
+              label="ESTIMATE"
+              icon={<EstimateIcon />}
+              sx={{ fontWeight: 600 }}
+              onClick={() => {
+                // Handle estimate action
+                console.log("Free estimate clicked");
+              }}
+            />
+          </BottomNavigation>
+        </Paper>
+      )}
+
+      {/* Add padding to prevent content from being hidden behind the bottom nav on mobile */}
+      {isMobile && <Box sx={{ pb: 7 }} />}
+    </>
   );
 };
 
