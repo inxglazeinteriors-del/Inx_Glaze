@@ -35,27 +35,15 @@ import interiors_Img1 from '../Interior_Images/Living.jpg';
 import interiors_Img2 from '../Interior_Images/House.jpg'
 import interiors_Img3 from '../Interior_Images/Bed.jpg'
 import interiors_Img4 from '../Interior_Images/Kavundampalayam.jpg'
-import FreeEstimateButton from './Estimation';
 import Pooja from '../Interior_Images/Pooja.jpg'
 import Saloon from '../Interior_Images/Saloon.jpg'
 import Blue from '../Interior_Images/Blue.jpg'
 import PoojaDoor from '../Interior_Images/PoojaDoor.jpg'
 import stairs from '../Interior_Images/Stairs.jpg'
 import { Link } from "react-router-dom";
+import Navbar from '../Interiors/Navbar';
 
-// Add these imports at the top of your file
-import {
-  Home as HomeIcon,
-  Collections as GalleryIcon,
-  Info as AboutIcon,
-  ContactMail as ContactIcon,
-  RequestQuote as EstimateIcon
-} from "@mui/icons-material";
 
-import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
-import InfoIcon from "@mui/icons-material/Info";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 // Create a custom theme for elegance
 const theme = createTheme({
   palette: {
@@ -251,142 +239,6 @@ const InteriorCarousel = () => {
     </Box>
   );
 };
-
-
-const Navbar = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [value, setValue] = useState(0);
-
-  const menuItems = [
-    { label: "HOME", path: "/", icon: <HomeIcon /> },
-    { label: "GALLERY", path: "/gallery", icon: <PhotoLibraryIcon /> },
-    { label: "ABOUT", path: "/about", icon: <InfoIcon /> },
-    { label: "CONTACT", path: "/contact", icon: <ContactMailIcon /> },
-  ];
-
-  return (
-    <>
-      {/* Top Navbar */}
-      <AppBar
-        position="fixed"
-        elevation={0}
-        sx={{
-          backgroundColor: "primary.main",
-          bottom: "unset", // always top
-        }}
-      >
-        <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
-          {/* Logo / Brand */}
-          <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="h6" component="div" fontWeight={400}>
-              Inx Glaze Solutions
-            </Typography>
-          </Box>
-
-          {/* Menu items (hidden on mobile) */}
-          {!isMobile && (
-            <Box sx={{ display: "flex" }}>
-              {menuItems.map((item) => (
-                <Button
-                  key={item.label}
-                  component={Link}
-                  to={item.path}
-                  sx={{
-                    mx: 0.5,
-                    color: "black",
-                    fontWeight: 600,
-                    textTransform: "none",
-                  }}
-                >
-                  {item.label}
-                </Button>
-              ))}
-            </Box>
-          )}
-
-          {/* Call-to-action button (always visible now) */}
-          <FreeEstimateButton />
-        </Toolbar>
-
-        {/* Sub-bar (always visible) */}
-        <Box
-          sx={{
-            backgroundColor: "primary.light",
-            color: "black",
-            py: 0.5,
-            textAlign: "center",
-          }}
-        >
-          <Typography variant="body2">
-            BENGALURU -{" "}
-            <span style={{ color: "black", fontWeight: 600 }}>COIMBATORE</span>{" "}
-            - CHENNAI - KERALA
-          </Typography>
-        </Box>
-      </AppBar>
-
-      {/* Mobile Bottom Navigation (only show on mobile) */}
-      {isMobile && (
-        <Paper
-          sx={{
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1000,
-            borderTop: "1px solid #e0e0e0",
-          }}
-          elevation={3}
-        >
-          <BottomNavigation
-            showLabels
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-            sx={{
-              backgroundColor: "primary.main",
-              "& .MuiBottomNavigationAction-root": {
-                color: "black",
-                minWidth: "auto",
-                padding: "6px 0",
-              },
-              "& .MuiBottomNavigationAction-root.Mui-selected": {
-                color: "black",
-                fontWeight: 600,
-              },
-            }}
-          >
-            {menuItems.map((item, index) => (
-              <BottomNavigationAction
-                key={item.label}
-                label={item.label}
-                icon={item.icon}
-                component={Link}
-                to={item.path}
-                sx={{
-                  fontWeight: value === index ? 600 : 400,
-                }}
-              />
-            ))}
-            <BottomNavigationAction
-              label="ESTIMATE"
-              icon={<RequestQuoteIcon />}
-              onClick={() => {
-                console.log("Free estimate clicked");
-              }}
-            />
-          </BottomNavigation>
-        </Paper>
-      )}
-
-      {/* Add padding for mobile so content is not hidden */}
-      {isMobile && <Box sx={{ pb: 7 }} />}
-    </>
-  );
-};
-
 
 
 const FeaturedProjects = () => {
