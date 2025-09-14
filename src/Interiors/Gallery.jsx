@@ -12,313 +12,329 @@ import {
   AppBar,
   Toolbar,
   Slide,
-  Container
+  Container,
 } from "@mui/material";
 import {
   Close as CloseIcon,
-  ZoomIn as ZoomInIcon,
   Favorite as FavoriteIcon,
-  FavoriteBorder as FavoriteBorderIcon
+  FavoriteBorder as FavoriteBorderIcon,
 } from "@mui/icons-material";
+import interior from "../Interior_Images/Bed.jpg";
 
-// Transition for the modal
+// Transition for modal
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-// Sample interior design images with categories
+// Sample interior designs
 const interiorDesigns = [
-  { 
-    id: 1, 
-    src: "https://source.unsplash.com/800x600/?interior,livingroom,modern", 
-    title: "Modern Living Room", 
+  {
+    id: 1,
+    src: interior,
+    title: "Modern Living Room",
     category: "Living Room",
-    description: "Contemporary design with minimalist furniture and natural lighting"
+    description: "Contemporary design with minimalist furniture and natural lighting",
   },
-  { 
-    id: 2, 
-    src: "https://source.unsplash.com/800x800/?interior,kitchen,luxury", 
-    title: "Luxury Kitchen", 
+  {
+    id: 2,
+    src: "https://source.unsplash.com/800x800/?luxury,kitchen,interior",
+    title: "Luxury Kitchen",
     category: "Kitchen",
-    description: "High-end kitchen with premium appliances and marble countertops"
+    description: "High-end kitchen with premium appliances and marble countertops",
   },
-  { 
-    id: 3, 
-    src: "https://source.unsplash.com/800x700/?interior,bedroom,cozy", 
-    title: "Cozy Bedroom", 
+  {
+    id: 3,
+    src: "https://source.unsplash.com/800x700/?luxury,bedroom,interior",
+    title: "Cozy Bedroom",
     category: "Bedroom",
-    description: "Warm and inviting bedroom with soft textiles and ambient lighting"
+    description: "Warm and inviting bedroom with soft textiles and ambient lighting",
   },
-  { 
-    id: 4, 
-    src: "https://source.unsplash.com/800x500/?interior,office,elegant", 
-    title: "Elegant Office", 
+  {
+    id: 4,
+    src: "https://source.unsplash.com/800x500/?luxury,office,interior",
+    title: "Elegant Office",
     category: "Office",
-    description: "Professional workspace with custom built-ins and ergonomic design"
+    description: "Professional workspace with custom built-ins and ergonomic design",
   },
-  { 
-    id: 5, 
-    src: "https://source.unsplash.com/800x900/?interior,bathroom,spa", 
-    title: "Spa-like Bathroom", 
+  {
+    id: 5,
+    src: "https://source.unsplash.com/800x900/?luxury,bathroom,interior",
+    title: "Spa-like Bathroom",
     category: "Bathroom",
-    description: "Luxurious bathroom with freestanding tub and natural stone finishes"
+    description: "Luxurious bathroom with freestanding tub and natural stone finishes",
   },
-  { 
-    id: 6, 
-    src: "https://source.unsplash.com/800x650/?interior,dining,contemporary", 
-    title: "Contemporary Dining", 
+  {
+    id: 6,
+    src: "https://source.unsplash.com/800x650/?luxury,diningroom,interior",
+    title: "Contemporary Dining",
     category: "Dining Room",
-    description: "Sleek dining area with statement lighting and custom table"
+    description: "Sleek dining area with statement lighting and custom table",
   },
-  { 
-    id: 7, 
-    src: "https://source.unsplash.com/800x750/?interior,livingroom,scandinavian", 
-    title: "Scandinavian Lounge", 
-    category: "Living Room",
-    description: "Light-filled space with natural materials and functional design"
-  },
-  { 
-    id: 8, 
-    src: "https://source.unsplash.com/800x550/?interior,kitchen,farmhouse", 
-    title: "Farmhouse Kitchen", 
-    category: "Kitchen",
-    description: "Rustic charm with modern amenities and shaker-style cabinetry"
-  }
 ];
 
-// All available categories
 const categories = ["All", "Living Room", "Kitchen", "Bedroom", "Office", "Bathroom", "Dining Room"];
 
 const GalleryPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("All");
   const [open, setOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [favorites, setFavorites] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Filter designs based on selected category
-  const filteredDesigns = selectedCategory === "All" 
-    ? interiorDesigns 
-    : interiorDesigns.filter(design => design.category === selectedCategory);
 
-  // Handle opening modal with selected image
+    // Filtered designs
+  const filteredDesigns =
+    selectedCategory === "All"
+      ? interiorDesigns
+      : interiorDesigns.filter((d) => d.category === selectedCategory);
+
+
+  // Modal handlers
   const handleOpen = (design) => {
     setSelectedImage(design);
     setOpen(true);
   };
-
-  // Handle closing modal
   const handleClose = () => {
     setOpen(false);
     setSelectedImage(null);
   };
 
-  // Toggle favorite status
+  // Toggle favorite
   const toggleFavorite = (id, e) => {
     e.stopPropagation();
     if (favorites.includes(id)) {
-      setFavorites(favorites.filter(favId => favId !== id));
+      setFavorites(favorites.filter((fav) => fav !== id));
     } else {
       setFavorites([...favorites, id]);
     }
   };
 
+  
+
   return (
-    <Box sx={{ 
-      minHeight: '100vh', 
-      background: 'linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%)',
-      py: 5,
-      px: { xs: 2, sm: 3, md: 4 }
-    }}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #f8f9fb 0%, #eceff5 100%)",
+        py: { xs: 6, md: 8 },
+      }}
+    >
       <Container maxWidth="xl">
-        {/* Page Header */}
-        <Box sx={{ textAlign: 'center', mb: 5 }}>
+        {/* Hero Section */}
+        <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography
             variant="h3"
-            sx={{ 
-              fontWeight: 700, 
+            sx={{
+              fontWeight: 800,
               mb: 2,
-              background: 'linear-gradient(45deg, #6b5ce7 30%, #8a7df0 90%)',
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent'
+              fontSize: { xs: "2rem", md: "3rem" },
+              background: "linear-gradient(90deg, #5b4bdb 0%, #8c7df0 100%)",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
             }}
           >
-            Design Gallery
+            Our Design Gallery
           </Typography>
-          <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', mb: 3 }}>
-            Explore our curated collection of interior design projects and find inspiration for your space
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            sx={{ maxWidth: 700, mx: "auto" }}
+          >
+            Explore a curated collection of luxury interiors that inspire elegance,
+            comfort, and timeless design.
           </Typography>
-          
-          {/* Category Filter Chips */}
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 1 }}>
+        </Box>
+        
+        <Box sx={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 1 }}>
             {categories.map((category) => (
               <Chip
                 key={category}
                 label={category}
                 onClick={() => setSelectedCategory(category)}
                 variant={selectedCategory === category ? "filled" : "outlined"}
-                color="primary"
-                sx={{ 
-                  px: 1, 
-                  py: 2,
+                sx={{
+                  px: 2,
+                  py: 1,
                   fontWeight: 600,
+                  borderRadius: "20px",
                   ...(selectedCategory === category && {
-                    background: 'linear-gradient(45deg, #6b5ce7 30%, #8a7df0 90%)',
-                    color: 'white'
-                  })
+                    background: "linear-gradient(45deg,#5b4bdb,#8c7df0)",
+                    color: "white",
+                  }),
                 }}
               />
             ))}
           </Box>
-        </Box>
 
-        {/* Gallery Grid */}
-        <Grid container spacing={3}>
+           {/* Gallery Grid */}
+        <Grid container spacing={4}>
           {filteredDesigns.map((design) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={design.id}>
-              <Card
-                sx={{
-                  borderRadius: 3,
-                  overflow: "hidden",
-                  boxShadow: '0 8px 16px rgba(0,0,0,0.1)',
-                  transition: "transform 0.3s, box-shadow 0.3s",
-                  cursor: 'pointer',
-                  "&:hover": {
-                    transform: "translateY(-8px)",
-                    boxShadow: '0 12px 20px rgba(0,0,0,0.15)',
-                    "& .media-overlay": {
-                      opacity: 1
-                    }
-                  },
-                }}
-                onClick={() => handleOpen(design)}
-              >
-                {/* Image with overlay */}
-                <Box sx={{ position: 'relative' }}>
-                  <CardMedia
-                    component="img"
-                    image={design.src}
-                    alt={design.title}
-                    sx={{ height: 280, objectFit: "cover" }}
-                  />
-                  <Box 
-                    className="media-overlay"
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      right: 0,
-                      bottom: 0,
-                      background: 'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, transparent 100%)',
-                      opacity: 0,
-                      transition: 'opacity 0.3s',
-                      display: 'flex',
-                      alignItems: 'flex-end',
-                      justifyContent: 'space-between',
-                      p: 2,
-                      color: 'white'
-                    }}
-                  >
-                    <Typography variant="h6" fontWeight={600}>
-                      {design.title}
-                    </Typography>
-                    <IconButton 
-                      color="inherit" 
-                      onClick={(e) => toggleFavorite(design.id, e)}
-                      sx={{ background: 'rgba(255,255,255,0.2)' }}
-                    >
-                      {favorites.includes(design.id) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                    </IconButton>
-                  </Box>
-                </Box>
-                
-                <Box sx={{ p: 2 }}>
-                  <Chip 
-                    label={design.category} 
-                    size="small" 
-                    color="primary" 
-                    variant="outlined"
-                    sx={{ mb: 1 }}
-                  />
-                  <Typography variant="body2" color="text.secondary" noWrap>
-                    {design.description}
-                  </Typography>
-                </Box>
-              </Card>
+              {/* same Card design as before */}
             </Grid>
           ))}
         </Grid>
 
-        {/* Image Modal */}
-        <Dialog
-          open={open}
-          onClose={handleClose}
-          TransitionComponent={Transition}
-          maxWidth="md"
-          fullWidth
-          scroll="body"
-        >
-          <AppBar position="sticky" sx={{ bgcolor: 'transparent', boxShadow: 'none' }}>
-            <Toolbar>
-              <IconButton
-                edge="start"
-                onClick={handleClose}
-                aria-label="close"
-                sx={{ 
-                  color: 'white',
-                  bgcolor: 'rgba(0,0,0,0.5)',
-                  "&:hover": {
-                    bgcolor: 'rgba(0,0,0,0.7)'
-                  }
-                }}
-              >
-                <CloseIcon />
-              </IconButton>
-              <Box sx={{ flexGrow: 1 }} />
-              <IconButton 
-                sx={{ 
-                  color: 'white',
-                  bgcolor: 'rgba(0,0,0,0.5)',
-                  "&:hover": {
-                    bgcolor: 'rgba(0,0,0,0.7)'
-                  }
-                }}
-                onClick={(e) => toggleFavorite(selectedImage?.id, e)}
-              >
-                {selectedImage && favorites.includes(selectedImage.id) ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <DialogContent sx={{ p: 0, bgcolor: 'rgba(0,0,0,0.9)' }}>
-            {selectedImage && (
-              <Box sx={{ textAlign: 'center' }}>
-                <img
-                  src={selectedImage.src}
-                  alt={selectedImage.title}
-                  style={{ 
-                    width: '100%', 
-                    height: 'auto',
-                    maxHeight: '80vh',
-                    objectFit: 'contain'
-                  }}
-                />
-                <Box sx={{ p: 3, color: 'white' }}>
-                  <Typography variant="h5" gutterBottom>
-                    {selectedImage.title}
-                  </Typography>
-                  <Chip 
-                    label={selectedImage.category} 
-                    color="primary" 
-                    sx={{ mb: 2 }} 
-                  />
-                  <Typography variant="body1">
-                    {selectedImage.description}
-                  </Typography>
-                </Box>
-              </Box>
+        {/* Gallery Grid */}
+       <Grid container spacing={4}>
+  {filteredDesigns.map((design) => (
+    <Grid item xs={12} sm={6} md={4} lg={3} key={design.id}>
+      <Card
+        onClick={() => handleOpen(design)}
+        sx={{
+          borderRadius: 5,
+          overflow: "hidden",
+          boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+          cursor: "pointer",
+          transition: "all 0.35s ease",
+          "&:hover": {
+            transform: "translateY(-6px)",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.15)",
+          },
+        }}
+      >
+        <Box sx={{ position: "relative" }}>
+          <CardMedia
+            component="img"
+            image={design.src}
+            alt={design.title}
+            sx={{
+              height: 260,
+              objectFit: "cover",
+              transition: "transform 0.4s ease",
+              "&:hover": { transform: "scale(1.05)" },
+            }}
+          />
+          <IconButton
+            onClick={(e) => toggleFavorite(design.id, e)}
+            sx={{
+              position: "absolute",
+              top: 12,
+              right: 12,
+              bgcolor: "rgba(255,255,255,0.8)",
+              "&:hover": { bgcolor: "rgba(255,255,255,1)" },
+            }}
+          >
+            {favorites.includes(design.id) ? (
+              <FavoriteIcon color="error" />
+            ) : (
+              <FavoriteBorderIcon />
             )}
-          </DialogContent>
-        </Dialog>
+          </IconButton>
+        </Box>
+
+        <Box sx={{ p: 2 }}>
+          <Typography variant="h6" fontWeight={700}>
+            {design.title}
+          </Typography>
+          <Chip
+            label={design.category}
+            size="small"
+            sx={{
+              mt: 1,
+              fontWeight: 600,
+              bgcolor: "#f3f0ff",
+              color: "#5b4bdb",
+            }}
+          />
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ mt: 1 }}
+          >
+            {design.description}
+          </Typography>
+        </Box>
+      </Card>
+    </Grid>
+  ))}
+</Grid>
+
+        
+
+        {/* Modal */}
+        <Dialog
+  open={open}
+  onClose={handleClose}
+  TransitionComponent={Transition}
+  maxWidth="md"
+  fullWidth
+  scroll="body"
+  PaperProps={{
+    sx: {
+      borderRadius: 4, // smooth rounded corners
+      overflow: "hidden",
+      bgcolor: "rgba(20,20,20,0.95)", // elegant dark background
+      boxShadow: "0 12px 40px rgba(0,0,0,0.6)", // luxury shadow
+    },
+  }}
+>
+  <DialogContent sx={{ p: 0 }}>
+    {selectedImage && (
+      <Box sx={{ textAlign: "center" }}>
+        {/* Image */}
+        <img
+          src={selectedImage.src}
+          alt={selectedImage.title}
+          style={{
+            width: "100%",
+            height: "auto",
+            maxHeight: "70vh",
+            objectFit: "cover",
+            borderTopLeftRadius: "16px",
+            borderTopRightRadius: "16px",
+          }}
+        />
+
+        {/* Content */}
+        <Box
+          sx={{
+            p: { xs: 3, md: 5 },
+            color: "white",
+            textAlign: "center",
+          }}
+        >
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              fontWeight: 700,
+              background: "linear-gradient(90deg, #7b5ce7, #a78afc)",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+            }}
+          >
+            {selectedImage.title}
+          </Typography>
+
+          <Chip
+            label={selectedImage.category}
+            sx={{
+              mb: 2,
+              bgcolor: "#5b4bdb",
+              color: "white",
+              fontWeight: 600,
+              borderRadius: "8px",
+            }}
+          />
+
+          <Typography
+            variant="body1"
+            sx={{
+              maxWidth: 600,
+              mx: "auto",
+              opacity: 0.9,
+              fontSize: "1.05rem",
+            }}
+          >
+            {selectedImage.description}
+          </Typography>
+        </Box>
+      </Box>
+    )}
+  </DialogContent>
+</Dialog>
+
       </Container>
     </Box>
   );

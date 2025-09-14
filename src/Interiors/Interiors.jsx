@@ -734,7 +734,7 @@ const ServicesSection = () => {
           aria-label="call"
           sx={{
             position: 'fixed',
-            bottom: 24,
+            bottom: 84,
             right: 24,
             width: 60,
             height: 60,
