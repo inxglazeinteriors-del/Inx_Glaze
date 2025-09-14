@@ -244,7 +244,7 @@ const Navbar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   
   const menuItems = [
-    'HOME', 'GALLERY', 'SERVICES', 'CONTACT'
+    'HOME', 'SERVICES', 'ABOUT', 'CONTACT'
   ];
 
   return (
@@ -367,18 +367,25 @@ const FeaturedProjects = () => {
   ];
 
   return (
-    <Box sx={{ backgroundColorx: 'black', py: { xs: 4, sm: 8 }, width: '100%', overflow: 'hidden' }}>
-  <Container maxWidth="xl" sx={{ px: { xs: 1, sm: 2, md: 3 } }}>
+    <Box sx={{  background: 'white', 
+    py: { xs: 6, sm: 10 },
+    width: '100%',
+    overflow: 'hidden' }}>
+  <Container maxWidth="xl" sx={{ px: { xs: 1, sm: 2, md: 4 } }}>
     <Typography 
       variant="h4" 
       align="center" 
       gutterBottom 
-      sx={{ mb: { xs: 4, sm: 6 }, color: 'white', px: { xs: 1, sm: 2 } }}
+      sx={{ mb: { xs: 5, sm: 8 }, color: 'black',
+      fontWeight: 700,
+      letterSpacing: 1.2,
+      textTransform: 'uppercase' 
+    }}
     >
       Featured Projects
     </Typography>
 
-    <Grid container spacing={2} justifyContent="center">
+    <Grid container spacing={3} justifyContent="center">
       {projects.map((project, index) => (
         <Grid 
           item 
@@ -386,24 +393,27 @@ const FeaturedProjects = () => {
           sm={6}       // 2 per row on tablets
           md={4}       // 3 per row on desktop
           key={index} 
-          sx={{ display: 'flex', justifyContent: 'center', p: { xs: 1, sm: 2 } }}
+          sx={{ display: 'flex', justifyContent: 'center' }}
         >
-          <Card 
-            sx={{ 
-              overflow: 'hidden',
-              transition: 'transform 0.3s',
-              width: '100%',
-              maxWidth: { xs: '100%', sm: 400 }, 
-              mx: 0,
-              '&:hover': {
-                transform: 'scale(1.03)',
-                '& .project-image': {
-                  transform: 'scale(1.1)'
-                }
-              }
-            }}
-          >
-            <Box sx={{ overflow: 'hidden', height: { xs: 180, sm: 250 } }}>
+          <Card
+  sx={{
+    borderRadius: 3,
+    overflow: 'hidden',
+    transition: 'all 0.4s ease',
+    width: '100%',
+    backgroundColor: 'white',
+
+    '&:hover': {
+      transform: 'translateY(-8px)',
+
+      '& .project-image': {
+        transform: 'scale(1.1)',
+        filter: 'brightness(1.05)'
+      }
+    }
+  }}
+>
+            <Box sx={{ overflow: 'hidden', height: { xs: 220, sm: 300 } }}>
               <Box
                 className="project-image"
                 sx={{
@@ -411,12 +421,12 @@ const FeaturedProjects = () => {
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   height: '100%',
-                  transition: 'transform 0.5s',
+                  transition: 'transform 0.6s ease, filter 0.6s ease',
                 }}
               />
             </Box>
 
-            <CardContent sx={{ px: { xs: 1, sm: 2 }, py: { xs: 1, sm: 2 } }}>
+            <CardContent sx={{ px: { xs: 1, sm: 2 }, py: { xs: 2, sm: 2 } }}>
               <Typography variant="h6" gutterBottom sx={{ fontSize: { xs: '1rem', sm: '1.25rem' } }}>
                 {project.title}
               </Typography>
@@ -436,6 +446,7 @@ const FeaturedProjects = () => {
 
   );
 };
+
 const ServicesSection = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
