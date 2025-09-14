@@ -21,30 +21,17 @@ const ContactPage = () => {
     <>
       <Navbar />
 
-      <Box sx={{ background: "#fff", minHeight: "100vh", py: { xs: 8, md: 16 } }}>
+      <Box sx={{ background: "#fff", minHeight: "100vh", py: { xs: 13, md: 16 } }}>
         <Container maxWidth="lg">
           {/* Intro */}
-          <Box sx={{ textAlign: "center", mb: 10 }}>
+          <Box sx={{ textAlign: "center", mb: 5 }}>
             <Typography
-              variant="h3"
+              variant="h4"
               sx={{ fontWeight: 700, color: "#222", mb: 2 }}
             >
               Contact Us
             </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                color: "text.secondary",
-                maxWidth: 700,
-                mx: "auto",
-                lineHeight: 1.8,
-              }}
-            >
-              We believe great design starts with a conversation. Whether you
-              have a project in mind or just want to explore possibilities, our
-              team is here to guide you. Reach out today — we’d love to hear
-              from you!
-            </Typography>
+           
           </Box>
 
           {/* Contact Info */}
