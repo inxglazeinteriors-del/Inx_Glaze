@@ -73,7 +73,7 @@ const Navbar = () => {
           {/* Logo */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Typography variant="h6" fontWeight={400}>
-              Inx 
+              Inx Glaze Solutions
             </Typography>
           </Box>
 

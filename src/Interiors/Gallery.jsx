@@ -130,7 +130,7 @@ const GalleryPage = () => {
                     py: { xs: 6, md: 8 },
                 }}
             >
-                <Container maxWidth="xl" sx={{ pt: { xs: 84, md: 6 } }}>
+                <Container maxWidth="xl" sx={{ pt: { xs: 8, md: 6 } }}>
                     {/* Hero Section */}
                     
 
