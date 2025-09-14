@@ -52,6 +52,10 @@ import {
   RequestQuote as EstimateIcon
 } from "@mui/icons-material";
 
+import PhotoLibraryIcon from "@mui/icons-material/PhotoLibrary";
+import InfoIcon from "@mui/icons-material/Info";
+import ContactMailIcon from "@mui/icons-material/ContactMail";
+import RequestQuoteIcon from "@mui/icons-material/RequestQuote";
 // Create a custom theme for elegance
 const theme = createTheme({
   palette: {
@@ -249,7 +253,6 @@ const InteriorCarousel = () => {
 };
 
 
-
 const Navbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -257,19 +260,27 @@ const Navbar = () => {
 
   const menuItems = [
     { label: "HOME", path: "/", icon: <HomeIcon /> },
-    { label: "GALLERY", path: "/gallery", icon: <GalleryIcon /> },
-    { label: "ABOUT", path: "/about", icon: <AboutIcon /> },
-    { label: "CONTACT", path: "/contact", icon: <ContactIcon /> },
+    { label: "GALLERY", path: "/gallery", icon: <PhotoLibraryIcon /> },
+    { label: "ABOUT", path: "/about", icon: <InfoIcon /> },
+    { label: "CONTACT", path: "/contact", icon: <ContactMailIcon /> },
   ];
 
   return (
     <>
-      <AppBar position="fixed" elevation={0} sx={{ backgroundColor: "primary.main", bottom: isMobile ? 'auto' : 'unset' }}>
+      {/* Top Navbar */}
+      <AppBar
+        position="fixed"
+        elevation={0}
+        sx={{
+          backgroundColor: "primary.main",
+          bottom: "unset", // always top
+        }}
+      >
         <Toolbar sx={{ justifyContent: "space-between", py: 1 }}>
           {/* Logo / Brand */}
           <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Typography variant="h6" component="div" fontWeight={600}>
-              Inx
+            <Typography variant="h6" component="div" fontWeight={400}>
+              Inx Glaze Solutions
             </Typography>
           </Box>
 
@@ -281,7 +292,12 @@ const Navbar = () => {
                   key={item.label}
                   component={Link}
                   to={item.path}
-                  sx={{ mx: 0.5, color: "black", fontWeight: 600, textTransform: "none" }}
+                  sx={{
+                    mx: 0.5,
+                    color: "black",
+                    fontWeight: 600,
+                    textTransform: "none",
+                  }}
                 >
                   {item.label}
                 </Button>
@@ -289,39 +305,38 @@ const Navbar = () => {
             </Box>
           )}
 
-          {/* Call-to-action button (hidden on mobile) */}
-          {!isMobile && <FreeEstimateButton />}
+          {/* Call-to-action button (always visible now) */}
+          <FreeEstimateButton />
         </Toolbar>
 
-        {/* Sub-bar (hidden on mobile) */}
-        {!isMobile && (
-          <Box
-            sx={{
-              backgroundColor: "primary.light",
-              color: "black",
-              py: 0.5,
-              textAlign: "center",
-            }}
-          >
-            <Typography variant="body2">
-              BENGALURU -{" "}
-              <span style={{ color: "black", fontWeight: 600 }}>COIMBATORE</span> - CHENNAI - KERALA
-            </Typography>
-          </Box>
-        )}
+        {/* Sub-bar (always visible) */}
+        <Box
+          sx={{
+            backgroundColor: "primary.light",
+            color: "black",
+            py: 0.5,
+            textAlign: "center",
+          }}
+        >
+          <Typography variant="body2">
+            BENGALURU -{" "}
+            <span style={{ color: "black", fontWeight: 600 }}>COIMBATORE</span>{" "}
+            - CHENNAI - KERALA
+          </Typography>
+        </Box>
       </AppBar>
 
-      {/* Mobile Bottom Navigation */}
+      {/* Mobile Bottom Navigation (only show on mobile) */}
       {isMobile && (
-        <Paper 
-          sx={{ 
-            position: 'fixed', 
-            bottom: 0, 
-            left: 0, 
-            right: 0, 
+        <Paper
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
             zIndex: 1000,
-            borderTop: '1px solid #e0e0e0'
-          }} 
+            borderTop: "1px solid #e0e0e0",
+          }}
           elevation={3}
         >
           <BottomNavigation
@@ -334,13 +349,13 @@ const Navbar = () => {
               backgroundColor: "primary.main",
               "& .MuiBottomNavigationAction-root": {
                 color: "black",
-                minWidth: 'auto',
-                padding: '6px 0',
+                minWidth: "auto",
+                padding: "6px 0",
               },
               "& .MuiBottomNavigationAction-root.Mui-selected": {
                 color: "black",
                 fontWeight: 600,
-              }
+              },
             }}
           >
             {menuItems.map((item, index) => (
@@ -350,17 +365,15 @@ const Navbar = () => {
                 icon={item.icon}
                 component={Link}
                 to={item.path}
-                sx={{ 
+                sx={{
                   fontWeight: value === index ? 600 : 400,
                 }}
               />
             ))}
             <BottomNavigationAction
               label="ESTIMATE"
-              icon={<EstimateIcon />}
-              sx={{ fontWeight: 600 }}
+              icon={<RequestQuoteIcon />}
               onClick={() => {
-                // Handle estimate action
                 console.log("Free estimate clicked");
               }}
             />
@@ -368,11 +381,12 @@ const Navbar = () => {
         </Paper>
       )}
 
-      {/* Add padding to prevent content from being hidden behind the bottom nav on mobile */}
+      {/* Add padding for mobile so content is not hidden */}
       {isMobile && <Box sx={{ pb: 7 }} />}
     </>
   );
 };
+
 
 
 const FeaturedProjects = () => {
