@@ -123,7 +123,7 @@ const AboutPage = () => {
                                 >
                                     Our Mission
                                 </Typography>
-                                <Typography variant="body1" sx={{ lineHeight: 1.9, fontSize: "1.1rem" }}>
+                                <Typography variant="body1" sx={{color: "black", lineHeight: 1.9, fontSize: "1.1rem" }}>
                                     To bring our clients’ vision to life by delivering innovative,
                                     functional, and aesthetically pleasing interior designs that enhance
                                     everyday living. Every design we create is rooted in creativity,
@@ -150,7 +150,7 @@ const AboutPage = () => {
                                 >
                                     Our Vision
                                 </Typography>
-                                <Typography variant="body1" sx={{ lineHeight: 1.9, fontSize: "1.1rem" }}>
+                                <Typography variant="body1" sx={{ color: "black", lineHeight: 1.9, fontSize: "1.1rem" }}>
                                     To become the most trusted name in interior design across India,
                                     known for timeless quality, luxury finishes, and a customer-first
                                     approach. We envision transforming homes into experiences that
