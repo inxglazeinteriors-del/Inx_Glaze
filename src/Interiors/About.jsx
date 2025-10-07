@@ -16,6 +16,7 @@ import team2 from "../Interior_Images/Living.jpg";
 import team3 from "../Interior_Images/Kavundampalayam.jpg";
 import Saloon from '../Interior_Images/Saloon.jpg'
 import PoojaDoor from '../Interior_Images/PoojaDoor.jpg'
+import { Helmet } from "react-helmet-async";
 
 const AboutPage = () => {
     return (
@@ -152,7 +153,7 @@ const AboutPage = () => {
                                 </Typography>
                                 <Typography variant="body1" sx={{ color: "black", lineHeight: 1.9, fontSize: "1.1rem" }}>
                                     To become the most trusted name in interior design across India,
-                                    known for timeless quality, luxury finishes, and a customer-first
+                                    known for timeless quality, luxury finis    hes, and a customer-first
                                     approach. We envision transforming homes into experiences that
                                     inspire.
                                 </Typography>

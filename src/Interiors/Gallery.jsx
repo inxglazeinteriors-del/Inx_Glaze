@@ -39,24 +39,31 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 // Sample interior designs
 const interiorDesigns = [
     {
+        id: 6,
+        src: Pooja,
+        title: "Pooja Room",
+        category: "Pooja Room",
+        description: "Sleek dining area with statement lighting and custom table",
+    },
+    {
         id: 1,
         src: interior,
-        title: "Modern Living Room",
-        category: "Living Room",
+        title: "Modern Bedroom",
+        category: "Bedroom",
         description: "Contemporary design with minimalist furniture and natural lighting",
     },
     {
         id: 2,
         src: interiors_Img1,
-        title: "Luxury Kitchen",
-        category: "Kitchen",
+        title: "Luxury living Room",    
+        category: "Living Room",
         description: "High-end kitchen with premium appliances and marble countertops",
     },
     {
         id: 3,
         src: interiors_Img2,
-        title: "Cozy Bedroom",
-        category: "Bedroom",
+        title: "Modern Hall & Kitchen Design",
+        category: "Hall",
         description: "Warm and inviting bedroom with soft textiles and ambient lighting",
     },
     {
@@ -73,16 +80,10 @@ const interiorDesigns = [
         category: "Bathroom",
         description: "Luxurious bathroom with freestanding tub and natural stone finishes",
     },
-    {
-        id: 6,
-        src: Pooja,
-        title: "Pooja Room",
-        category: "Pooja Room",
-        description: "Sleek dining area with statement lighting and custom table",
-    },
+    
 ];
 
-const categories = ["All", "Living Room", "Kitchen", "Bedroom", "Office", "Bathroom", "Pooja Room"];
+const categories = ["All", "Living Room", "Bedroom", "Office", "Bathroom", "Pooja Room"];
 
 const GalleryPage = () => {
     const [open, setOpen] = useState(false);
