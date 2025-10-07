@@ -19,11 +19,52 @@ import PoojaDoor from '../Interior_Images/PoojaDoor.jpg'
 import { Helmet } from "react-helmet-async";
 
 const AboutPage = () => {
+    const aboutSchema = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "mainEntity": {
+            "@type": "LocalBusiness",
+            "name": "Inx Glaze Solution",
+            "image": "https://inxglazesolutions.in/logo.png",
+            "url": "https://inxglazesolutions.in/about",
+            "logo": "https://yoursite.com/logo.png",
+            "description": "Inx Glaze Solution Interiors & Exteriors is a modern design company specializing in interior and exterior design, creating elegant, functional, and timeless spaces.",
+            "foundingDate": "2018",
+            "founder": {
+                "@type": "Person",
+                "name": "Prabhu Kumar"
+            },
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Bus Stop, 9 Vadavalli, Coimbatore",
+                "addressLocality": "Coimbatore",
+                "addressRegion": "Tamil Nadu",
+                "postalCode": "641041",
+                "addressCountry": "IN"
+            },
+        }
+    };
+
+
     return (
         <>
+         <Helmet>
+        <title>Our Story | Inx Glaze Solution Interiors – Design That Inspires</title>
+        <meta name="description" content="Learn more about Inx Glaze Solution  — a creative team delivering elegant interior and exterior design solutions in coimbatore. Discover our story, mission, and expertise."/>
+        <meta name="title" content="Budget Interior Designers - Unbeatable Price & Quality" />
+        <meta name="description" content="Transform your home with our expert interior design services – creating beautiful, functional, and personalized spaces you'll love." />
+        <meta name="keywords" content="Interior design in Coimbatore, Home decoration ideas Coimbatore, Modern living room designs Coimbatore, Bedroom and kitchen interiors Coimbatore, Luxury home styling Coimbatore, Contemporary home decor Coimbatore, Minimalist interiors Coimbatore, Home renovation Coimbatore, Interior designers Coimbatore, Furniture arrangement tips Coimbatore" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://inxglazesolutions.in/about" />
+        <meta property="og:image" content="https://inxglazesolutions.in/og-image-about.jpg" />
+        <script type="application/ld+json">
+          {JSON.stringify(aboutSchema)}
+        </script>
+      </Helmet>
             <Navbar />
 
             {/* Hero Section */}
+            
             <Box
                 sx={{
                     position: "relative",
@@ -124,8 +165,8 @@ const AboutPage = () => {
                                 >
                                     Our Mission
                                 </Typography>
-                                <Typography variant="body1" sx={{color: "black", lineHeight: 1.9, fontSize: "1.1rem" }}>
-                                    To bring our clients’ vision to life by delivering innovative,
+                                <Typography variant="body1" sx={{ color: "black", lineHeight: 1.9, fontSize: "1.1rem" }}>
+                                    To bring our clients vision to life by delivering innovative,
                                     functional, and aesthetically pleasing interior designs that enhance
                                     everyday living. Every design we create is rooted in creativity,
                                     quality, and personalization.
@@ -237,7 +278,7 @@ const AboutPage = () => {
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 4 }}>
                     Let’s design a space that reflects your personality and lifestyle.
-                </Typography>   
+                </Typography>
 
             </Box>
         </>

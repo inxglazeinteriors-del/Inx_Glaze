@@ -119,8 +119,6 @@ const GalleryPage = () => {
         }
     };
 
-
-
     return (
         <>
             <Navbar />

@@ -42,7 +42,7 @@ import PoojaDoor from '../Interior_Images/PoojaDoor.jpg'
 import stairs from '../Interior_Images/Stairs.jpg'
 import { Link } from "react-router-dom";
 import Navbar from '../Interiors/Navbar';
-
+import { Helmet } from "react-helmet-async";
 
 // Create a custom theme for elegance
 const theme = createTheme({
@@ -153,6 +153,21 @@ const InteriorCarousel = () => {
       setFade(true);
     }, 300);
   };
+
+
+  <Helmet>
+          <title>Best Interiors in Coimbatore</title>
+          <meta name="description" content="Learn more about Inx Glaze Solution  — a creative team delivering elegant interior and exterior design solutions in coimbatore. Discover our story, mission, and expertise." />
+          <meta name="title" content="Budget Interior Designers - Unbeatable Price & Quality" />
+          <meta name="description" content="Professional interior design in Coimbatore – creating stylish, functional, and personalized spaces for your home." />
+          <meta name="keywords" content="Interior design coimbatore, Home styling, Modern interiors, Contemporary home decor, Interior decoration ideas, Living room design, Bedroom design, Kitchen interiors, Minimalist interiors, Luxury home design, Home makeover, Interior trends, Home renovation, Space planning, Furniture arrangement" />
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content="https://inxglazesolutions.in/about" />
+          <meta property="og:image" content="https://inxglazesolutions.in/og-image-about.jpg" />
+          <script type="application/ld+json">
+            {JSON.stringify(aboutSchema)}
+          </script>
+        </Helmet>
 
   return (
     <Box sx={{ position: 'relative', height: isMobile ? '70vh' : '80vh', overflow: 'hidden' }}>
